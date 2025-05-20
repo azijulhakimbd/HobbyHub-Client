@@ -5,9 +5,9 @@ import { AuthContext } from "../Context/AuthContext";
 import UserProfile from "./UserProfile";
 
 const Navbar = () => {
-   const {user,}=use(AuthContext);
+   const {user, userLogout}=use(AuthContext);
   const handleLogout=()=>{
-    
+    userLogout()
     toast.success("Logout Successfully")
   }
   return (

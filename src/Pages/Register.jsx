@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -9,18 +9,21 @@ import { Helmet } from "react-helmet";
 
 const Register = () => {
   const [isEyeOpen, setIsEyeOpen] = useState(false);
-  const { userRegister, googleLogin, setUser, userUpdate } =
-    React.useContext(AuthContext);
+
+  const { userRegister, googleLogin, setUser } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const photo = e.target.photo.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-
+    const form = e.target;
+    const forData = new FormData(form);
+    const email = forData.get("email");
+    const password = forData.get("password");
+    const photo = forData.get("photo");
+    const name = forData.get("name");
+    console.log(name, photo);
+    // Password validation
     const hasUpperCase = /[A-Z]/.test(password);
     const hasLowerCase = /[a-z]/.test(password);
     const isLongEnough = password.length >= 6;
@@ -35,16 +38,9 @@ const Register = () => {
     userRegister(email, password)
       .then((result) => {
         const user = result.user;
-        userUpdate({ displayName: name, photoURL: photo })
-          .then(() => {
-            setUser({ ...user, displayName: name, photoURL: photo });
-            toast.success("Registered Successfully");
-            navigate("/");
-          })
-          .catch((error) => {
-            console.log(error);
-            setUser(user);
-          });
+        toast.success("Registered Successfully");
+        navigate("/");
+        setUser(user);
       })
       .catch((error) => {
         console.log(error);
