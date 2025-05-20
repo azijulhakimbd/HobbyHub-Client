@@ -8,6 +8,7 @@ import MyGroups from "../Pages/MyGroups";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Home from "../Components/Home";
+import ErrorPage from "../Pages/ErrorPage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +23,7 @@ export const router = createBrowserRouter([
             Component:Home
         },
         {
-            path:'/allgroup',
+            path:'/allgroups',
             Component:AllGroup,
 
         },
@@ -44,4 +45,8 @@ export const router = createBrowserRouter([
         }
     ]
   },
+  {
+    path:'/*',
+    Component:ErrorPage
+  }
 ]);
