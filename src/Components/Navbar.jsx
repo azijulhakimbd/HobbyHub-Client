@@ -2,6 +2,7 @@ import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
+import UserProfile from "./UserProfile";
 
 const Navbar = () => {
    const {user,}=use(AuthContext);
@@ -71,7 +72,7 @@ const Navbar = () => {
       <div className="navbar-end">
          {
           user? <>
-          <NavProfile></NavProfile>
+          <UserProfile></UserProfile>
           <button onClick={handleLogout} className="btn btn-primary">Log Out</button>
           </>
           :
