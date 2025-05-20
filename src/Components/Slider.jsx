@@ -3,10 +3,10 @@ import React from "react";
 const Slider = () => {
   return (
     <div>
-      <div className="carousel w-full">
+      <div className="carousel w-full h-50 md:h-100 lg:h-210">
         <div id="slide1" className="carousel-item relative w-full">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
+            src="https://i.postimg.cc/m2Rfc5nK/chang-duong-Sj0i-Mtq-Z4w-unsplash.jpg"
             className="w-full"
           />
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
@@ -20,7 +20,7 @@ const Slider = () => {
         </div>
         <div id="slide2" className="carousel-item relative w-full">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
+            src="https://i.postimg.cc/x1Tw5bnR/mike-swigunski-6-Sg-LJg7k-M7-E-unsplash.jpg"
             className="w-full"
           />
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
@@ -34,7 +34,7 @@ const Slider = () => {
         </div>
         <div id="slide3" className="carousel-item relative w-full">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
+            src="https://i.postimg.cc/Dy7HfbJT/akson-1-K8p-Ib-Irhk-Q-unsplash.jpg"
             className="w-full"
           />
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
@@ -48,7 +48,7 @@ const Slider = () => {
         </div>
         <div id="slide4" className="carousel-item relative w-full">
           <img
-            src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
+            src="https://i.postimg.cc/bwJ5kc9V/duy-pham-Cecb0-8-Hx-o-unsplash.jpg"
             className="w-full"
           />
           <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
