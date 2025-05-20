@@ -166,7 +166,7 @@ const Register = () => {
           </form>
 
           {/* Google Login */}
-          <div className="p-5 items-center ml-18">
+          <div className="p-5 items-center">
             <button
               onClick={handleGLogin}
               className="btn bg-white text-black border border-[#e5e5e5] px-4 py-2 rounded w-full mt-4 flex items-center justify-center gap-2"
