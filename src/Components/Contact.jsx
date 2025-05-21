@@ -112,7 +112,7 @@ const Contact = () => {
 
             <div class="overflow-hidden rounded-lg lg:col-span-2 h-96 lg:h-auto">
               <iframe
-                className="w-[1000px] h-[500px] shadow-xl"
+                className="w-[600px] md:w-[800px] lg:w-[1000px] h-[300px] md:h-400 lg:h-[500px] lg:shadow-xl"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4481.383885914711!2d90.15852667608132!3d25.154595333423607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3757c5bec071161f%3A0x2cf1aa613c9f4d90!2sMAH%20Technology!5e1!3m2!1sen!2sbd!4v1747809893645!5m2!1sen!2sbd"
               ></iframe>
             </div>
