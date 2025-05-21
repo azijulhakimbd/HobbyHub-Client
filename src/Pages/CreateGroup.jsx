@@ -1,7 +1,9 @@
-import React, { use, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
+import Swal from "sweetalert2";
+
 const hobbyCategories = [
   "Drawing & Painting",
   "Photography",
@@ -12,41 +14,40 @@ const hobbyCategories = [
   "Reading",
   "Writing",
 ];
+
 const CreateGroup = () => {
-  const { user } = use(AuthContext); // Assuming user contains name and email
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const [formData, setFormData] = useState({
-    groupName: "",
-    category: "",
-    description: "",
-    location: "",
-    maxMembers: "",
-    startDate: "",
-    imageUrl: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const formDataObj = new FormData(form);
+    const newGroup = Object.fromEntries(formDataObj.entries());
 
-    const newGroup = {
-      ...formData,
-      userName: user?.displayName || "Anonymous",
-      userEmail: user?.email || "unknown@email.com",
-      createdAt: new Date().toISOString(),
-    };
+    // Append user info and timestamp
+    newGroup.userName = user?.displayName || "Anonymous";
+    newGroup.userEmail = user?.email || "unknown@email.com";
+    newGroup.createdAt = new Date().toISOString();
 
-    // Here you'd send the group data to your database or backend
-    console.log("Group Created:", newGroup);
-
-    toast.success("Group created successfully!");
-    navigate("/"); 
+    // Submit to backend or DB
+    fetch("http://localhost:3000/groups", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newGroup),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          toast.success("Group created successfully!");
+          navigate("/");
+          form.reset();
+        }
+      });
   };
+
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
       <h2 className="text-2xl font-semibold mb-6 text-center">
@@ -58,16 +59,12 @@ const CreateGroup = () => {
           name="groupName"
           placeholder="Group Name"
           className="w-full px-4 py-2 border rounded"
-          value={formData.groupName}
-          onChange={handleChange}
           required
         />
 
         <select
           name="category"
           className="w-full px-4 py-2 border rounded"
-          value={formData.category}
-          onChange={handleChange}
           required
         >
           <option value="">Select Hobby Category</option>
@@ -83,8 +80,6 @@ const CreateGroup = () => {
           placeholder="Description"
           className="w-full px-4 py-2 border rounded"
           rows="4"
-          value={formData.description}
-          onChange={handleChange}
           required
         ></textarea>
 
@@ -93,8 +88,6 @@ const CreateGroup = () => {
           name="location"
           placeholder="Meeting Location"
           className="w-full px-4 py-2 border rounded"
-          value={formData.location}
-          onChange={handleChange}
           required
         />
 
@@ -103,8 +96,6 @@ const CreateGroup = () => {
           name="maxMembers"
           placeholder="Max Members"
           className="w-full px-4 py-2 border rounded"
-          value={formData.maxMembers}
-          onChange={handleChange}
           required
         />
 
@@ -112,8 +103,6 @@ const CreateGroup = () => {
           type="date"
           name="startDate"
           className="w-full px-4 py-2 border rounded"
-          value={formData.startDate}
-          onChange={handleChange}
           required
         />
 
@@ -122,8 +111,6 @@ const CreateGroup = () => {
           name="imageUrl"
           placeholder="Image URL"
           className="w-full px-4 py-2 border rounded"
-          value={formData.imageUrl}
-          onChange={handleChange}
           required
         />
 
