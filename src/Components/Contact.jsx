@@ -1,23 +1,23 @@
 import React from "react";
-
+import { Fade } from "react-awesome-reveal";
 const Contact = () => {
   return (
     <div>
       <section class="bg-[#efefef]">
         <div class="container px-6 py-12 mx-auto">
           <div>
-            <p class="font-medium text-blue-500">
-              Contact us
-            </p>
-
-            <h1 class="mt-2 text-3xl font-semibold text-blue-600 md:text-3xl">
-              Get in touch
-            </h1>
+            <p class="font-medium text-blue-500">Contact us</p>
+      
+              <h1 class="mt-2 lg:text-4xl font-semibold text-blue-600 md:text-3xl">
+                Get in touch
+              </h1>
+           
           </div>
 
           <div class="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-3">
             <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-1">
-              <div>
+             <Fade duration={3000}>
+               <div>
                 <span class="inline-block p-3 bg-blue-600 rounded-full text-white ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -35,15 +35,11 @@ const Contact = () => {
                   </svg>
                 </span>
 
-                <h2 class="mt-4  font-medium text-black">
-                  Email
-                </h2>
-                <p class="mt-2 text-sm text-gray-500 text-gray-400">
+                <h2 class="mt-4  font-medium text-black">Email</h2>
+                <p class="mt-2 text-sm text-gray-500 ">
                   Our friendly team is here to help.
                 </p>
-                <p class="mt-2 text-sm text-blue-500 ">
-                  azijul.info@gmail.com
-                </p>
+                <p class="mt-2 text-sm text-blue-500 ">azijul.info@gmail.com</p>
               </div>
 
               <div>
@@ -69,14 +65,12 @@ const Contact = () => {
                   </svg>
                 </span>
 
-                <h2 class="mt-4 text-black font-medium ">
-                  Office
-                </h2>
-                <p class="mt-2 text-sm text-gray-500 text-gray-400">
+                <h2 class="mt-4 text-black font-medium ">Office</h2>
+                <p class="mt-2 text-sm text-gray-500 ">
                   Come say hello at our office HQ.
                 </p>
-                <p class="mt-2 text-sm text-blue-500 text-blue-400">
-                  nalitabari-2110, Sherpur,BD.
+                <p class="mt-2 text-sm text-blue-500 ">
+                  Nalitabari-2110, Sherpur,BD.
                 </p>
               </div>
 
@@ -98,16 +92,13 @@ const Contact = () => {
                   </svg>
                 </span>
 
-                <h2 class="mt-4 font-medium text-black">
-                  Phone
-                </h2>
-                <p class="mt-2 text-sm text-gray-500 text-gray-400">
+                <h2 class="mt-4 font-medium text-black">Phone</h2>
+                <p class="mt-2 text-sm text-gray-500 ">
                   Mon-Fri from 8am to 5pm.
                 </p>
-                <p class="mt-2 text-sm text-blue-500 text-blue-400">
-                  +880 1758524125
-                </p>
+                <p class="mt-2 text-sm text-blue-500 ">+880 1758524125</p>
               </div>
+             </Fade>
             </div>
 
             <div class="overflow-hidden rounded-lg lg:col-span-2 h-96 lg:h-auto">

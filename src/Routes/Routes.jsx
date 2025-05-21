@@ -11,6 +11,7 @@ import Home from "../Components/Home";
 import ErrorPage from "../Pages/ErrorPage";
 import PrivateRoutes from "./PrivateRoutes";
 import GroupDetailsPage from "../Pages/GroupDetailsPage";
+import UpdateGroup from "../Pages/UpdateGroup";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +48,12 @@ export const router = createBrowserRouter([
             path:'/group/:id',
             element:<PrivateRoutes>
                 <GroupDetailsPage></GroupDetailsPage>
+            </PrivateRoutes>
+        },
+        {
+            path:'/group/:id',
+            element:<PrivateRoutes>
+                <UpdateGroup></UpdateGroup>
             </PrivateRoutes>
         },
         {
