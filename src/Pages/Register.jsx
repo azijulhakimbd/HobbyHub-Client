@@ -3,7 +3,7 @@ import React, { use, useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
-
+import { Typewriter } from "react-simple-typewriter";
 import { AuthContext } from "../Context/AuthContext";
 import { Helmet } from "react-helmet";
 
@@ -71,7 +71,21 @@ const Register = () => {
 
         <div className="bg-white p-10 rounded-lg shadow-md w-full max-w-md">
           <h2 className="text-2xl font-semibold text-center mb-6">
-            Register your account
+            
+             <Typewriter
+                            cursor
+                            cursorBlinking
+                            delaySpeed={1000}
+                            deleteSpeed={25}
+                            loop={0}
+                            typeSpeed={75}
+                            words={[
+                              
+                              "Welcome to Register Page",
+                              "Register your account"
+                              
+                            ]}
+                          />
           </h2>
           <div className="border-t border-gray-200 mb-6"></div>
 

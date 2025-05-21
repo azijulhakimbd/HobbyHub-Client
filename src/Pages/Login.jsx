@@ -4,9 +4,10 @@ import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { Typewriter } from "react-simple-typewriter";
 
 const Login = () => {
-     const [isEyeOpen, setIsEyeOpen] = useState(false);
+  const [isEyeOpen, setIsEyeOpen] = useState(false);
   const { userLogin, googleLogin, setUser } = React.useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -47,15 +48,28 @@ const Login = () => {
         <Helmet>
           <meta charSet="utf-8" />
           <title>Login</title>
-          <link
-            rel="canonical"
-            href="https://subscription-athentication.netlify.app/login"
-          />
+          <link rel="canonical" href="#" />
         </Helmet>
 
         <div className="bg-white p-10 rounded-lg shadow-md w-full max-w-md">
           <h2 className="text-2xl font-semibold text-center mb-6">
-            Login to your account
+           
+              <Typewriter
+                cursor
+                cursorBlinking
+                delaySpeed={1000}
+                deleteSpeed={25}
+                loop={0}
+                typeSpeed={75}
+                words={[
+                  
+                  "Welcome back to Login Page",
+                  "Login to your account"
+                  
+                ]}
+              />
+            
+            
           </h2>
           <div className="border-t border-gray-200 mb-6"></div>
 
