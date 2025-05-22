@@ -1,0 +1,31 @@
+import React from "react";
+import { IoLocationOutline } from "react-icons/io5";
+
+const GroupCard = ({ group }) => {
+  const { groupName, imageUrl, description, location } = group;
+
+  return (
+    <div className="card bg-base-100 w-full sm:w-80 md:w-96 shadow-sm mx-auto">
+      <figure className="px-4 pt-4">
+        <img
+          src={imageUrl}
+          alt="Group Photo"
+          className="rounded-xl object-cover h-48 w-full"
+        />
+      </figure>
+      <div className="card-body items-center text-center space-y-2">
+        <h2 className="card-title text-lg md:text-xl">{groupName}</h2>
+        <p className="text-sm md:text-base">{description}</p>
+        <div className="flex items-center gap-1 text-sm text-gray-500">
+          <IoLocationOutline className="text-lg" />
+          <span>{location}</span>
+        </div>
+        <div className="card-actions">
+          <button className="btn btn-primary btn-sm md:btn-md">See More</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default GroupCard;

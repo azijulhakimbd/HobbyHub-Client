@@ -19,6 +19,7 @@ export const router = createBrowserRouter([
     children:[
         {
             index:true,
+             loader:()=>fetch('http://localhost:3000/groups'),
             Component:HomeLayout,
         },
         {
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
         },
         {
             path:'/allgroups',
+            loader:()=>fetch('http://localhost:3000/groups'),
             element:<PrivateRoutes>
                 <AllGroup></AllGroup>
             </PrivateRoutes>
