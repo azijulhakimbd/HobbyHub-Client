@@ -1,29 +1,29 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link } from "react-router"; 
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthContext";
 
 const MyGroups = () => {
   const { user } = useContext(AuthContext);
-  const initialGroups = useLoaderData();
-  const [groups, setGroups] = useState(initialGroups);
-  const currentUserEmail = user.email;
+  const [groups, setGroups] = useState([]);
+  const currentUserEmail = user?.email;
 
   useEffect(() => {
     const fetchGroups = async () => {
       try {
-        const res = await fetch("http://localhost:3000/groups");
-        const data = await res.json();
-        const myGroups = data.filter(
-          (group) => group.userEmail === currentUserEmail
+        const res = await fetch(
+          `https://b11-a10-papaya-server.vercel.app/groups?email=${currentUserEmail}`
         );
-        setGroups(myGroups);
+        const data = await res.json();
+        setGroups(data);
       } catch (error) {
         console.error("Error fetching groups:", error);
       }
     };
 
-    fetchGroups();
+    if (currentUserEmail) {
+      fetchGroups();
+    }
   }, [currentUserEmail]);
 
   const handleDelete = (_id) => {
@@ -101,7 +101,14 @@ const MyGroups = () => {
             ) : (
               <tr>
                 <td colSpan="8" className="p-4 text-center text-gray-500">
-                  No groups found.
+                  
+                  <Link
+                    to="/createGroup"
+                    className="text-blue-600 underline hover:text-blue-800"
+                  >
+                   
+                  </Link>
+                  ।
                 </td>
               </tr>
             )}

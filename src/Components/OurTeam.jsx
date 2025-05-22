@@ -1,16 +1,23 @@
 import React from "react";
+import { Typewriter } from "react-simple-typewriter";
 
 const OurTeam = () => {
   return (
     <div>
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className="mx-auto mb-10 lg:max-w-xl sm:text-center">
-          <p className="inline-block px-3 py-px mb-4 text-4xl font-semibold tracking-wider uppercase rounded-full bg-teal-accent-400">
-            Discover Our Team
+          <p className="inline-block px-3 py-px mb-4 text-4xl font-semibold tracking-wider uppercase rounded-full text-indigo-700 bg-teal-accent-400">
+            <Typewriter
+              cursor
+              cursorBlinking
+              delaySpeed={1000}
+              deleteSpeed={25}
+              loop={0}
+              typeSpeed={75}
+              words={["Discover Our Team"]}
+            />
           </p>
-          <p className="text-base text-gray-700 md:text-lg">
-            
-          </p>
+          <p className="text-base text-gray-700 md:text-lg"></p>
         </div>
         <div className="grid gap-10 mx-auto sm:grid-cols-2 lg:grid-cols-4 lg:max-w-screen-lg">
           <div>
@@ -23,7 +30,9 @@ const OurTeam = () => {
             </div>
             <div className="flex flex-col sm:text-center">
               <p className="text-lg font-bold">Rakib Hossain</p>
-              <p className="mb-5 text-xs text-gray-800">Team Leader & Frontend Dev</p>
+              <p className="mb-5 text-xs text-gray-800">
+                Team Leader & Frontend Dev
+              </p>
               <div className="flex items-center space-x-3 sm:justify-center">
                 <a
                   href="/"

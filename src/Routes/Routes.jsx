@@ -54,6 +54,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "/group/:id",
+        loader: ({ params }) =>
+          fetch(`https://b11-a10-papaya-server.vercel.app/groups/${params.id}`),
         element: (
           <PrivateRoutes>
             <GroupDetailsPage></GroupDetailsPage>

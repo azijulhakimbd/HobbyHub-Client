@@ -1,8 +1,9 @@
 import React from "react";
 import { IoLocationOutline } from "react-icons/io5";
+import { Link } from "react-router";
 
 const GroupCard = ({ group }) => {
-  const { groupName, imageUrl, description, location } = group;
+  const {_id, groupName, imageUrl, description, location } = group;
 
   return (
     <div className="card bg-[#efefef] w-full hover:shadow-2xl sm:w-80 md:w-96 lg:w-200  mx-auto">
@@ -21,7 +22,7 @@ const GroupCard = ({ group }) => {
           <span>{location}</span>
         </div>
         <div className="card-actions">
-          <button className="btn btn-primary btn-sm md:btn-md">See More</button>
+         <Link to={`/group/${_id}`}> <button className="btn btn-primary btn-sm md:btn-md">See More</button></Link>
         </div>
       </div>
     </div>

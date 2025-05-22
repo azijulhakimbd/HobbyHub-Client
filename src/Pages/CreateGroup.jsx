@@ -31,7 +31,7 @@ const CreateGroup = () => {
     newGroup.createdAt = new Date().toISOString();
 
     // Submit to backend or DB
-    fetch("http://localhost:3000/groups", {
+    fetch("https://b11-a10-papaya-server.vercel.app/groups/", {
       method: "POST",
       headers: {
         "content-type": "application/json",
