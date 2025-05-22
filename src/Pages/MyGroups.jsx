@@ -1,21 +1,19 @@
-import React, { use, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useLoaderData } from "react-router";
+import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthContext";
-import { toast } from "react-toastify";
 
 const MyGroups = () => {
-  const { user } = use(AuthContext);
-  const currentUserEmail=user.email;
-  const [groups, setGroups] = useState([]);
-  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+  const initialGroups = useLoaderData();
+  const [groups, setGroups] = useState(initialGroups);
+  const currentUserEmail = user.email;
 
   useEffect(() => {
     const fetchGroups = async () => {
       try {
         const res = await fetch("http://localhost:3000/groups");
         const data = await res.json();
-
-        // Filter groups by the logged-in user's email
         const myGroups = data.filter(
           (group) => group.userEmail === currentUserEmail
         );
@@ -26,32 +24,33 @@ const MyGroups = () => {
     };
 
     fetchGroups();
-  }, []);
+  }, [currentUserEmail]);
 
-  const handleDelete = async (id) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this group?"
-    );
-    if (!confirmed) return;
-
-    try {
-      const res = await fetch(`http://localhost:3000/groups/${id}`, {
-        method: "DELETE",
-      });
-
-      if (res.ok) {
-        setGroups((prev) => prev.filter((group) => group._id !== id));
-        toast.success("Group deleted successfully!");
-      } else {
-        toast.warning("Failed to delete the group.");
+  const handleDelete = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://b11-a10-papaya-server.vercel.app/groups/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount) {
+              Swal.fire("Deleted!", "Your group has been deleted.", "success");
+              setGroups((prevGroups) =>
+                prevGroups.filter((group) => group._id !== _id)
+              );
+            }
+          });
       }
-    } catch (error) {
-      console.error("Delete error:", error);
-    }
-  };
-
-  const handleUpdate = (id) => {
-    navigate(`/updateGroup/${id}`);
+    });
   };
 
   return (
@@ -85,12 +84,11 @@ const MyGroups = () => {
                     {new Date(group.createdAt).toLocaleDateString()}
                   </td>
                   <td className="p-3 border space-x-2">
-                    <button
-                      onClick={() => handleUpdate(group._id)}
-                      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                    >
-                      Update
-                    </button>
+                    <Link to={`/updateGroup/${group._id}`}>
+                      <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+                        Update
+                      </button>
+                    </Link>
                     <button
                       onClick={() => handleDelete(group._id)}
                       className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"

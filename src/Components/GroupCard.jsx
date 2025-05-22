@@ -5,12 +5,12 @@ const GroupCard = ({ group }) => {
   const { groupName, imageUrl, description, location } = group;
 
   return (
-    <div className="card bg-base-100 w-full sm:w-80 md:w-96 shadow-sm mx-auto">
+    <div className="card bg-[#efefef] w-full hover:shadow-2xl sm:w-80 md:w-96 lg:w-200  mx-auto">
       <figure className="px-4 pt-4">
         <img
           src={imageUrl}
           alt="Group Photo"
-          className="rounded-xl object-cover h-48 w-full"
+          className="rounded-xl object-cover lg:h-100 w-full"
         />
       </figure>
       <div className="card-body items-center text-center space-y-2">

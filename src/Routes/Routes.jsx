@@ -15,61 +15,73 @@ import UpdateGroup from "../Pages/UpdateGroup";
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component:Root,
-    children:[
-        {
-            index:true,
-             loader:()=>fetch('http://localhost:3000/groups'),
-            Component:HomeLayout,
-        },
-        {
-            path:'/home',
-            Component:Home
-        },
-        {
-            path:'/allgroups',
-            loader:()=>fetch('http://localhost:3000/groups'),
-            element:<PrivateRoutes>
-                <AllGroup></AllGroup>
-            </PrivateRoutes>
-
-        },
-        {
-            path:'/creategroup',
-            element:<PrivateRoutes>
-                <CreateGroup></CreateGroup>
-            </PrivateRoutes>
-        },
-        {
-            path:'/mygroups',
-            element:<PrivateRoutes>
-                <MyGroups></MyGroups>
-            </PrivateRoutes>
-        },
-        {
-            path:'/group/:id',
-            element:<PrivateRoutes>
-                <GroupDetailsPage></GroupDetailsPage>
-            </PrivateRoutes>
-        },
-        {
-            path:'/group/:id',
-            element:<PrivateRoutes>
-                <UpdateGroup></UpdateGroup>
-            </PrivateRoutes>
-        },
-        {
-            path:'/login',
-            Component:Login
-        },
-        {
-            path:'/register',
-            Component:Register
-        }
-    ]
+    Component: Root,
+    children: [
+      {
+        index: true,
+        loader: () => fetch("https://b11-a10-papaya-server.vercel.app/groups/"),
+        Component: HomeLayout,
+      },
+      {
+        path: "/home",
+        Component: Home,
+      },
+      {
+        path: "/allgroups",
+        loader: () => fetch("https://b11-a10-papaya-server.vercel.app/groups/"),
+        element: (
+          <PrivateRoutes>
+            <AllGroup></AllGroup>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/creategroup",
+        element: (
+          <PrivateRoutes>
+            <CreateGroup></CreateGroup>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/mygroups",
+        loader: () => fetch("https://b11-a10-papaya-server.vercel.app/groups/"),
+        element: (
+          <PrivateRoutes>
+            <MyGroups></MyGroups>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/group/:id",
+        element: (
+          <PrivateRoutes>
+            <GroupDetailsPage></GroupDetailsPage>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/updateGroup/:id",
+        loader: ({ params }) =>
+          fetch(`https://b11-a10-papaya-server.vercel.app/groups/${params.id}`),
+        element: (
+          <PrivateRoutes>
+            <UpdateGroup></UpdateGroup>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/login",
+        Component: Login,
+      },
+      {
+        path: "/register",
+        Component: Register,
+      },
+    ],
   },
   {
-    path:'/*',
-    Component:ErrorPage
-  }
+    path: "/*",
+    Component: ErrorPage,
+  },
 ]);

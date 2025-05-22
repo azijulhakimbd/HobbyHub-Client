@@ -75,13 +75,13 @@ const CreateGroup = () => {
           ))}
         </select>
 
-        <textarea
+        <input
           name="description"
           placeholder="Description"
           className="w-full px-4 py-2 border rounded"
           rows="4"
           required
-        ></textarea>
+        ></input>
 
         <input
           type="text"

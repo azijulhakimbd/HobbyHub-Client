@@ -3,13 +3,14 @@ import { Link, NavLink } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
 import UserProfile from "./UserProfile";
-
+import { RiLogoutCircleRLine } from "react-icons/ri";
+import { IoMdLogIn } from "react-icons/io";
 const Navbar = () => {
-   const {user, userLogout}=use(AuthContext);
-  const handleLogout=()=>{
-    userLogout()
-    toast.success("Logout Successfully")
-  }
+  const { user, userLogout } = use(AuthContext);
+  const handleLogout = () => {
+    userLogout();
+    toast.success("Logout Successfully");
+  };
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -49,35 +50,44 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-blue-700 font-extrabold text-xl">
+        <a className="btn btn-ghost text-blue-700 font-extrabold lg:text-xl">
           Hobby<span className="font-medium text-violet-700">Hub</span>
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-              <NavLink to={"/"}>Home</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/allgroups"}>All Groups</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/creategroup"}>Create Group</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/mygroups"}>My Groups</NavLink>
-            </li>
+            <NavLink to={"/"}>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/allgroups"}>All Groups</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/creategroup"}>Create Group</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/mygroups"}>My Groups</NavLink>
+          </li>
         </ul>
       </div>
       <div className="navbar-end">
-         {
-          user? <>
-          <UserProfile></UserProfile>
-          <button onClick={handleLogout} className="btn btn-primary">Log Out</button>
+        {user ? (
+          <>
+            <UserProfile></UserProfile>
+            <button onClick={handleLogout} className="btn text-amber-50 bg-red-500">
+              <RiLogoutCircleRLine size={24} />Log Out
+            </button>
           </>
-          :
-          <Link className="btn btn-primary" to={'/login'}>Login</Link>
-          }
+        ) : (
+          <>
+            <Link className="btn bg-lime-500 text-white mx-2" to={"/login"}>
+              <IoMdLogIn size={24}/>Login
+            </Link>
+            <Link className="btn btn-primary" to={"/register"}>
+              Register
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
