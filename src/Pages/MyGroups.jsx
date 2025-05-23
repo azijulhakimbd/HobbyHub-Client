@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthContext";
+import { Helmet } from "react-helmet";
 
 const MyGroups = () => {
   const [groups, setGroups] = useState([]);
@@ -45,6 +46,11 @@ const MyGroups = () => {
 
   return (
     <div className="p-6 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+      <Helmet>
+          <meta charSet="utf-8" />
+          <title>My Groups</title>
+          <link rel="canonical" href="https://b11-a10-papiya.netlify.app/mygroups" />
+        </Helmet>
       <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">My Groups</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto border dark:border-gray-700 shadow-md rounded">

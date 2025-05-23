@@ -48,7 +48,7 @@ const Login = () => {
         <Helmet>
           <meta charSet="utf-8" />
           <title>Login</title>
-          <link rel="canonical" href="#" />
+          <link rel="canonical" href="https://b11-a10-papiya.netlify.app/login" />
         </Helmet>
 
         <div className="bg-white p-10 rounded-lg shadow-md w-full max-w-md">

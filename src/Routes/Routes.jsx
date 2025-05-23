@@ -23,10 +23,6 @@ export const router = createBrowserRouter([
         Component: HomeLayout,
       },
       {
-        path: "/home",
-        Component: Home,
-      },
-      {
         path: "/allgroups",
         loader: () => fetch("https://b11-a10-papaya-server.vercel.app/groups/"),
         element: (

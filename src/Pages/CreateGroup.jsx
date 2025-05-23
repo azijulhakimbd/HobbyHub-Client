@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const hobbyCategories = [
   "Drawing & Painting",
@@ -50,6 +51,11 @@ const CreateGroup = () => {
 
   return (
    <div className="max-w-3xl mx-auto p-6 bg-white dark:bg-gray-900 shadow-lg rounded-lg mt-10">
+    <Helmet>
+          <meta charSet="utf-8" />
+          <title>Create Group</title>
+          <link rel="canonical" href="https://b11-a10-papiya.netlify.app/creategroup" />
+        </Helmet>
   <h2 className="text-2xl font-semibold mb-6 text-center text-gray-900 dark:text-white">
     Create a Hobby Group
   </h2>
