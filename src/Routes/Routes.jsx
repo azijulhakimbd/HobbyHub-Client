@@ -7,7 +7,6 @@ import CreateGroup from "../Pages/CreateGroup";
 import MyGroups from "../Pages/MyGroups";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
-import Home from "../Components/Home";
 import ErrorPage from "../Pages/ErrorPage";
 import PrivateRoutes from "./PrivateRoutes";
 import GroupDetailsPage from "../Pages/GroupDetailsPage";
