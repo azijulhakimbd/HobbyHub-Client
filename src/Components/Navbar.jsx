@@ -5,6 +5,7 @@ import { AuthContext } from "../Context/AuthContext";
 import UserProfile from "./UserProfile";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { IoMdLogIn } from "react-icons/io";
+import ThemeToggle from "../Pages/ThemeToggle";
 const Navbar = () => {
   const { user, userLogout } = use(AuthContext);
   const handleLogout = () => {
@@ -71,6 +72,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
+             <ThemeToggle />
+
         {user ? (
           <>
             <UserProfile></UserProfile>

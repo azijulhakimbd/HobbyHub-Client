@@ -52,101 +52,110 @@ const UpdateGroup = () => {
       });
   };
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10">
-      <h2 className="text-2xl font-semibold mb-6 text-center">
-        Update a Hobby Group
-      </h2>
-      <form onSubmit={handleUpdateSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="groupName"
-          defaultValue={groupName}
-          placeholder="Group Name"
-          className="w-full px-4 py-2 border rounded"
-          required
-        />
+    <div className="max-w-3xl mx-auto p-6 bg-white dark:bg-gray-900 shadow-lg rounded-lg mt-10">
+  <h2 className="text-2xl font-semibold mb-6 text-center text-gray-900 dark:text-white">
+    Update a Hobby Group
+  </h2>
+  <form onSubmit={handleUpdateSubmit} className="space-y-4">
+    <input
+      type="text"
+      name="groupName"
+      defaultValue={groupName}
+      placeholder="Group Name"
+      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
+                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
+      required
+    />
 
-        <select
-          name="category"
-          defaultValue={category}
-          className="w-full px-4 py-2 border rounded"
-          required
-        >
-          <option value="">Select Hobby Category</option>
-          {hobbyCategories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
+    <select
+      name="category"
+      defaultValue={category}
+      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
+                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
+      required
+    >
+      <option value="">Select Hobby Category</option>
+      {hobbyCategories.map((cat) => (
+        <option key={cat} value={cat}>
+          {cat}
+        </option>
+      ))}
+    </select>
 
-        <input
-          name="description"
-          placeholder="Description"
-          defaultValue={description}
-          className="w-full px-4 py-2 border rounded"
-          rows="4"
-          required
-        ></input>
+    <textarea
+      name="description"
+      placeholder="Description"
+      defaultValue={description}
+      rows="4"
+      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
+                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
+      required
+    ></textarea>
 
-        <input
-          type="text"
-          name="location"
-          defaultValue={location}
-          placeholder="Meeting Location"
-          className="w-full px-4 py-2 border rounded"
-          required
-        />
+    <input
+      type="text"
+      name="location"
+      defaultValue={location}
+      placeholder="Meeting Location"
+      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
+                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
+      required
+    />
 
-        <input
-          type="number"
-          name="maxMembers"
-          defaultValue={maxMembers}
-          placeholder="Max Members"
-          className="w-full px-4 py-2 border rounded"
-          required
-        />
+    <input
+      type="number"
+      name="maxMembers"
+      defaultValue={maxMembers}
+      placeholder="Max Members"
+      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
+                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
+      required
+    />
 
-        <input
-          type="date"
-          name="startDate"
-          defaultValue={startDate}
-          className="w-full px-4 py-2 border rounded"
-          required
-        />
+    <input
+      type="date"
+      name="startDate"
+      defaultValue={startDate}
+      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
+                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
+      required
+    />
 
-        <input
-          type="url"
-          name="imageUrl"
-          defaultValue={imageUrl}
-          placeholder="Image URL"
-          className="w-full px-4 py-2 border rounded"
-          required
-        />
+    <input
+      type="url"
+      name="imageUrl"
+      defaultValue={imageUrl}
+      placeholder="Image URL"
+      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
+                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
+      required
+    />
 
-        {/* Read-only user info */}
-        <input
-          type="text"
-          value={user?.displayName || "Anonymous"}
-          className="w-full px-4 py-2 border rounded bg-gray-100"
-          readOnly
-        />
+    {/* Read-only user info */}
+    <input
+      type="text"
+      value={user?.displayName || "Anonymous"}
+      className="w-full px-4 py-2 border rounded bg-gray-100 dark:bg-gray-700 dark:text-gray-100"
+      readOnly
+    />
 
-        <input
-          type="email"
-          value={user?.email || "unknown@email.com"}
-          className="w-full px-4 py-2 border rounded bg-gray-100"
-          readOnly
-        />
+    <input
+      type="email"
+      value={user?.email || "unknown@email.com"}
+      className="w-full px-4 py-2 border rounded bg-gray-100 dark:bg-gray-700 dark:text-gray-100"
+      readOnly
+    />
 
-        <button
-          type="submit"
-          className="w-full bg-blue-400 text-white py-2 px-4 rounded hover:bg-gray-800"
-        >
-          Update Group
-        </button>
-      </form>
-    </div>
+    <button
+      type="submit"
+      className="w-full bg-blue-400 hover:bg-gray-800 text-white py-2 px-4 rounded
+                 dark:bg-blue-600 dark:hover:bg-blue-800"
+    >
+      Update Group
+    </button>
+  </form>
+</div>
+
   );
 };
 

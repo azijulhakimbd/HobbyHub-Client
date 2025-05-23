@@ -4,12 +4,12 @@ import { Typewriter } from "react-simple-typewriter";
 const Contact = () => {
   return (
     <div>
-      <section class="bg-[#efefef]">
+      <section class="bg-[#efefef] dark:bg-gray-900 transition-colors duration-300">
         <div class="container px-6 py-12 mx-auto">
           <div>
             <p class="font-medium text-blue-500">Contact us</p>
 
-            <h1 class="mt-2 lg:text-4xl font-semibold text-blue-600 md:text-3xl">
+            <h1 class="mt-2 lg:text-4xl text-2xl font-semibold text-blue-600 md:text-3xl">
               <Typewriter
                 cursor
                 cursorBlinking
@@ -43,7 +43,7 @@ const Contact = () => {
                     </svg>
                   </span>
 
-                  <h2 class="mt-4  font-medium text-black">Email</h2>
+                  <h2 class="mt-4  font-medium dark:text-white text-black">Email</h2>
                   <p class="mt-2 text-sm text-gray-500 ">
                     Our friendly team is here to help.
                   </p>
@@ -75,7 +75,7 @@ const Contact = () => {
                     </svg>
                   </span>
 
-                  <h2 class="mt-4 text-black font-medium ">Office</h2>
+                  <h2 class="mt-4 text-black dark:text-white font-medium ">Office</h2>
                   <p class="mt-2 text-sm text-gray-500 ">
                     Come say hello at our office HQ.
                   </p>
@@ -102,7 +102,7 @@ const Contact = () => {
                     </svg>
                   </span>
 
-                  <h2 class="mt-4 font-medium text-black">Phone</h2>
+                  <h2 class="mt-4 font-medium dark:text-white text-black">Phone</h2>
                   <p class="mt-2 text-sm text-gray-500 ">
                     Mon-Fri from 8am to 5pm.
                   </p>

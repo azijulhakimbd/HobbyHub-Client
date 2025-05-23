@@ -4,9 +4,11 @@ import Contact from '../Components/Contact';
 import OurTeam from '../Components/OurTeam';
 import AllGroup from './AllGroup';
 
+
 const HomeLayout = () => {
     return (
         <div>
+          
            {/* Slider */}
            <Slider></Slider>
            {/* Features Group */}

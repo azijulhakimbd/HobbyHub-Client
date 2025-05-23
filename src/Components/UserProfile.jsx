@@ -13,7 +13,7 @@ const UserProfile = () => {
         <img
           src={user?.photoURL}
           alt="Profile"
-          className="w-10 h-10 sm:w-12 sm:h-12 border rounded-full object-cover"
+          className="lg:w-10 lg:h-10 w-10 h-8 border rounded-full object-cover"
         />
       </div>
 
