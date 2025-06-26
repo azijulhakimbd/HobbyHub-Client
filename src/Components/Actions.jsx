@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 const Actions = () => {
     return (
-         <div className="bg-[#efefef] rounded-2xl text-lg py-12 text-center px-4">
+         <div className="bg-base-100 shadow-2xl py-15  rounded-2xl text-lg  text-center px-4">
       <h2 className="text-3xl font-semibold mb-4">
         Ready to explore your hobby?
       </h2>
