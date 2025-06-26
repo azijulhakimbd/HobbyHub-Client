@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  
 } from "firebase/auth";
 import { auth } from "../Firebase/Firebase.config";
 
@@ -23,6 +24,7 @@ const AuthProvider = ({ children }) => {
   const userLogin = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+ 
 
   // Google Login
   const provider = new GoogleAuthProvider();

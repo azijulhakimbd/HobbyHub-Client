@@ -11,6 +11,9 @@ import ErrorPage from "../Pages/ErrorPage";
 import PrivateRoutes from "./PrivateRoutes";
 import GroupDetailsPage from "../Pages/GroupDetailsPage";
 import UpdateGroup from "../Pages/UpdateGroup";
+import About from "../Pages/About";
+import Contact from "../Components/Contact";
+import Support from "../Pages/Support";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +25,7 @@ export const router = createBrowserRouter([
         Component: HomeLayout,
       },
       {
-        path: "/allgroups",
+        path: "/all-groups",
         loader: () => fetch("https://b11-a10-papaya-server.vercel.app/groups/"),
         element: (
           <PrivateRoutes>
@@ -31,7 +34,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/creategroup",
+        path: "/create-group",
         element: (
           <PrivateRoutes>
             <CreateGroup></CreateGroup>
@@ -39,7 +42,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/mygroups",
+        path: "/my-groups",
         loader: () => fetch("https://b11-a10-papaya-server.vercel.app/groups/"),
         element: (
           <PrivateRoutes>
@@ -75,6 +78,18 @@ export const router = createBrowserRouter([
         path: "/register",
         Component: Register,
       },
+      {
+        path:'/about',
+        Component: About
+      },
+      {
+        path:'/contact',
+        Component: Contact
+      },
+      {
+        path:'support',
+        Component: Support
+      }
     ],
   },
   {

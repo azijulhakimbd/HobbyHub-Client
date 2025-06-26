@@ -52,7 +52,7 @@ const Slider = () => {
       }}
     >
       {/* Caption */}
-      <div className="absolute top-90 left-100 transform -translate-x-1/2 z-20  bg-opacity-50 text-indigo-500 px-6 py-2 rounded text-5xl font-extrabold shadow-lg">
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20  bg-opacity-50 text-white px-4 py-2 rounded-md text-xl md:text-3xl lg:text-5xl font-bold text-center shadow-md">
         {slides[currentIndex].caption}
       </div>
 

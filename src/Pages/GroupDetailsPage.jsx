@@ -1,6 +1,6 @@
 import React from "react";
 import { IoLocationOutline } from "react-icons/io5";
-import { useLoaderData } from "react-router";
+import { useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const GroupDetailsPage = () => {
@@ -13,59 +13,74 @@ const GroupDetailsPage = () => {
     userName,
     category,
     maxMembers,
+    startDate, 
   } = useLoaderData();
 
   const handleGroupJoin = () => {
-    toast.success(" Group Joined Successfully!");
+    toast.success("Group Joined Successfully!");
   };
 
+  // ✅ Check deadline
+  const isDeadlineOver = new Date() > new Date(startDate);
+
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-20">
-      <h1 className="text-3xl sm:text-4xl text-center font-bold text-indigo-700 mb-10">
+    <div className="min-h-screen bg-base-100 py-10 px-4 sm:px-6 lg:px-20">
+      <h1 className="text-3xl sm:text-4xl text-center font-bold text-primary mb-10">
         Group Details
       </h1>
 
-      <div className="bg-white shadow-xl rounded-3xl flex flex-col lg:flex-row gap-10 p-6 md:p-10">
-        {/* Image */}
-        <div className="flex justify-center items-center w-full lg:w-1/2">
+      <div className="card lg:card-side bg-base-200 shadow-xl">
+        {/* Image Section */}
+        <figure className="w-full lg:w-1/2 p-6">
           <img
             src={imageUrl}
-            alt="Group"
-            className="w-full max-h-[400px] object-cover rounded-2xl border border-[#efefef]"
+            alt={groupName}
+            className="rounded-2xl object-cover w-full h-full max-h-[400px]"
           />
-        </div>
+        </figure>
 
-        {/* Info */}
-        <div className="w-full lg:w-1/2 flex flex-col justify-center space-y-5 text-gray-700">
-          <h2 className="text-5xl font-semibold text-indigo-600 text-center lg:text-left">
+        {/* Details Section */}
+        <div className="card-body w-full lg:w-1/2 text-base-content space-y-3">
+          <h2 className="card-title text-2xl sm:text-3xl text-secondary">
             {groupName}
           </h2>
 
-          <p className="text-lg">{description}</p>
-
-          <div className="space-y-1">
+          <div className="grid gap-1 text-sm sm:text-base">
+            <p className="text-justify text-lg">{description}</p>
             <p>
-              <strong>Category:</strong> {category}
+              <span className="font-semibold text-lg">Category:</span> {category}
             </p>
             <p>
-              <strong>Max Members:</strong> {maxMembers}
+              <span className="font-semibold text-lg">Max Members:</span> {maxMembers}
             </p>
             <p>
-              <strong>Group by:</strong> {userName}
+              <span className="font-semibold text-lg">Group By:</span> {userName}
+            </p>
+            <p>
+              <span className="font-semibold text-lg">Date:</span> {startDate}
             </p>
           </div>
 
-          <div className="flex items-center justify-center lg:justify-start gap-2 text-gray-600">
-            <IoLocationOutline className="text-xl" />
-            <span className="text-md sm:text-lg">{location}</span>
+          <div className="flex items-center gap-2 text-lg">
+            <IoLocationOutline className="text-lg" />
+            <span>{location}</span>
           </div>
 
-          <button
-            onClick={handleGroupJoin}
-            className="mt-4 w-full md:w-1/2 self-center lg:self-start bg-indigo-600 text-white py-2 px-6 rounded-xl hover:bg-indigo-700 transition duration-300"
-          >
-            Join Group
-          </button>
+          {/* Join Button / Deadline Message */}
+          <div className="card-actions justify-start mt-4">
+            {isDeadlineOver ? (
+              <div className="text-error font-semibold text-lg">
+                ⚠️ Deadline Over
+              </div>
+            ) : (
+              <button
+                onClick={handleGroupJoin}
+                className="btn btn-primary w-full md:w-1/2"
+              >
+                Join Group
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

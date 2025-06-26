@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom"; 
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthContext";
 import { Helmet } from "react-helmet";
 
 const MyGroups = () => {
   const [groups, setGroups] = useState([]);
-  const { user } = useContext(AuthContext); 
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (user?.email) {
@@ -22,7 +22,7 @@ const MyGroups = () => {
   const handleDelete = (_id) => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "You won’t be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -37,7 +37,7 @@ const MyGroups = () => {
           .then((data) => {
             if (data.deletedCount) {
               Swal.fire("Deleted!", "Your group has been deleted.", "success");
-              setGroups((prevGroups) => prevGroups.filter((group) => group._id !== _id));
+              setGroups((prev) => prev.filter((g) => g._id !== _id));
             }
           });
       }
@@ -45,67 +45,71 @@ const MyGroups = () => {
   };
 
   return (
-    <div className="p-6 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div className="min-h-screen p-6 bg-base-200 text-base-content transition-colors duration-300">
       <Helmet>
-          <meta charSet="utf-8" />
-          <title>My Groups</title>
-          <link rel="canonical" href="https://b11-a10-papiya.netlify.app/mygroups" />
-        </Helmet>
-      <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">My Groups</h2>
-      <div className="overflow-x-auto">
-        <table className="min-w-full table-auto border dark:border-gray-700 shadow-md rounded">
-          <thead className="bg-gray-100 dark:bg-gray-800 text-left">
-            <tr className="text-gray-800 dark:text-gray-200">
-              <th className="p-3 border dark:border-gray-700">#</th>
-              <th className="p-3 border dark:border-gray-700">Group Name</th>
-              <th className="p-3 border dark:border-gray-700">Category</th>
-              <th className="p-3 border dark:border-gray-700">Location</th>
-              <th className="p-3 border dark:border-gray-700">Max Members</th>
-              <th className="p-3 border dark:border-gray-700">Start Date</th>
-              <th className="p-3 border dark:border-gray-700">Created</th>
-              <th className="p-3 border dark:border-gray-700">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {groups.length > 0 ? (
-              groups.map((group, index) => (
-                <tr key={group._id} className="hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200">
-                  <td className="p-3 border dark:border-gray-700">{index + 1}</td>
-                  <td className="p-3 border dark:border-gray-700">{group.groupName}</td>
-                  <td className="p-3 border dark:border-gray-700">{group.category}</td>
-                  <td className="p-3 border dark:border-gray-700">{group.location}</td>
-                  <td className="p-3 border dark:border-gray-700">{group.maxMembers}</td>
-                  <td className="p-3 border dark:border-gray-700">{group.startDate}</td>
-                  <td className="p-3 border dark:border-gray-700">
-                    {new Date(group.createdAt).toLocaleDateString()}
-                  </td>
-                  <td className="p-3 border dark:border-gray-700 space-x-2">
-                    <Link to={`/updateGroup/${group._id}`}>
-                      <button className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
-                        Update
+        <meta charSet="utf-8" />
+        <title>My Groups</title>
+        <link rel="canonical" href="https://b11-a10-papiya.netlify.app/mygroups" />
+      </Helmet>
+
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl font-bold mb-6 text-center text-primary">My Created Groups</h2>
+
+        <div className="overflow-x-auto rounded-xl shadow">
+          <table className="table table-zebra w-full">
+            <thead className="bg-base-300 text-base-content">
+              <tr>
+                <th>#</th>
+                <th>Group Name</th>
+                <th>Category</th>
+                <th>Location</th>
+                <th>Max Members</th>
+                <th>Start Date</th>
+                <th>Created</th>
+                <th className="text-center">Actions</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {groups.length > 0 ? (
+                groups.map((group, index) => (
+                  <tr key={group._id}>
+                    <td>{index + 1}</td>
+                    <td>{group.groupName}</td>
+                    <td>{group.category}</td>
+                    <td>{group.location}</td>
+                    <td>{group.maxMembers}</td>
+                    <td>{group.startDate}</td>
+                    <td>{new Date(group.createdAt).toLocaleDateString()}</td>
+                    <td className="flex gap-2 justify-center">
+                      <Link to={`/updateGroup/${group._id}`}>
+                        <button className="btn btn-sm btn-info text-white">Update</button>
+                      </Link>
+                      <button
+                        onClick={() => handleDelete(group._id)}
+                        className="btn btn-sm btn-error text-white"
+                      >
+                        Delete
                       </button>
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(group._id)}
-                      className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="8" className="text-center text-gray-500 py-6">
+                    You have no groups.{" "}
+                    <Link
+                      to="/createGroup"
+                      className="link text-primary underline"
                     >
-                      Delete
-                    </button>
+                      Create one?
+                    </Link>
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="8" className="p-4 text-center text-gray-500 dark:text-gray-400">
-                  You have no groups.{" "}
-                  <Link to="/createGroup" className="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-500">
-                    Create one?
-                  </Link>
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

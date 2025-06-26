@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom"; 
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
-import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
 
 const hobbyCategories = [
@@ -26,17 +25,13 @@ const CreateGroup = () => {
     const formDataObj = new FormData(form);
     const newGroup = Object.fromEntries(formDataObj.entries());
 
-    // Append user info and timestamp
     newGroup.userName = user?.displayName || "Anonymous";
     newGroup.userEmail = user?.email || "unknown@email.com";
     newGroup.createdAt = new Date().toISOString();
 
-    // Submit to backend or DB
     fetch("https://b11-a10-papaya-server.vercel.app/groups/", {
       method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
+      headers: { "content-type": "application/json" },
       body: JSON.stringify(newGroup),
     })
       .then((res) => res.json())
@@ -50,107 +45,92 @@ const CreateGroup = () => {
   };
 
   return (
-   <div className="max-w-3xl mx-auto p-6 bg-white dark:bg-gray-900 shadow-lg rounded-lg mt-10">
-    <Helmet>
-          <meta charSet="utf-8" />
-          <title>Create Group</title>
-          <link rel="canonical" href="https://b11-a10-papiya.netlify.app/creategroup" />
-        </Helmet>
-  <h2 className="text-2xl font-semibold mb-6 text-center text-gray-900 dark:text-white">
-    Create a Hobby Group
-  </h2>
-  <form onSubmit={handleSubmit} className="space-y-4">
-    <input
-      type="text"
-      name="groupName"
-      placeholder="Group Name"
-      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
-                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
-      required
-    />
+    <div className="min-h-screen bg-base-200 text-base-content py-10 px-4">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Create Group</title>
+        <link rel="canonical" href="https://b11-a10-papiya.netlify.app/creategroup" />
+      </Helmet>
 
-    <select
-      name="category"
-      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
-                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
-      required
-    >
-      <option value="">Select Hobby Category</option>
-      {hobbyCategories.map((cat) => (
-        <option key={cat} value={cat}>
-          {cat}
-        </option>
-      ))}
-    </select>
+      <div className="max-w-3xl mx-auto bg-base-100 shadow-xl rounded-2xl p-8">
+        <h2 className="text-3xl font-bold mb-6 text-center text-primary">Create a Hobby Group</h2>
 
-    <textarea
-      name="description"
-      placeholder="Description"
-      rows="4"
-      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
-                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
-      required
-    ></textarea>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            name="groupName"
+            placeholder="Group Name"
+            className="input input-bordered w-full"
+            required
+          />
 
-    <input
-      type="text"
-      name="location"
-      placeholder="Meeting Location"
-      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
-                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
-      required
-    />
+          <select name="category" className="select select-bordered w-full" required>
+            <option value="">Select Hobby Category</option>
+            {hobbyCategories.map((cat) => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </select>
 
-    <input
-      type="number"
-      name="maxMembers"
-      placeholder="Max Members"
-      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
-                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
-      required
-    />
+          <textarea
+            name="description"
+            placeholder="Description"
+            className="textarea textarea-bordered w-full"
+            rows="4"
+            required
+          ></textarea>
 
-    <input
-      type="date"
-      name="startDate"
-      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
-                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
-      required
-    />
+          <input
+            type="text"
+            name="location"
+            placeholder="Meeting Location"
+            className="input input-bordered w-full"
+            required
+          />
 
-    <input
-      type="url"
-      name="imageUrl"
-      placeholder="Image URL"
-      className="w-full px-4 py-2 border border-gray-300 rounded bg-white text-gray-900
-                 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100"
-      required
-    />
+          <input
+            type="number"
+            name="maxMembers"
+            placeholder="Max Members"
+            className="input input-bordered w-full"
+            required
+          />
 
-    {/* Read-only user info */}
-    <input
-      type="text"
-      value={user?.displayName || "Anonymous"}
-      className="w-full px-4 py-2 border rounded bg-gray-100 dark:bg-gray-700 dark:text-gray-100"
-      readOnly
-    />
+          <input
+            type="date"
+            name="startDate"
+            className="input input-bordered w-full"
+            required
+          />
 
-    <input
-      type="email"
-      value={user?.email || "unknown@email.com"}
-      className="w-full px-4 py-2 border rounded bg-gray-100 dark:bg-gray-700 dark:text-gray-100"
-      readOnly
-    />
+          <input
+            type="url"
+            name="imageUrl"
+            placeholder="Image URL"
+            className="input input-bordered w-full"
+            required
+          />
 
-    <button
-      type="submit"
-      className="w-full bg-blue-400 hover:bg-gray-800 text-white py-2 px-4 rounded
-                 dark:bg-blue-600 dark:hover:bg-blue-800"
-    >
-      Create Group
-    </button>
-  </form>
-</div>
+          {/* Read-only User Info */}
+          <input
+            type="text"
+            value={user?.displayName || "Anonymous"}
+            readOnly
+            className="input input-disabled w-full"
+          />
+
+          <input
+            type="email"
+            value={user?.email || "unknown@email.com"}
+            readOnly
+            className="input input-disabled w-full"
+          />
+
+          <button type="submit" className="btn btn-primary w-full mt-4">
+            Create Group
+          </button>
+        </form>
+      </div>
+    </div>
   );
 };
 

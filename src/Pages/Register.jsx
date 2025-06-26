@@ -1,11 +1,11 @@
 import React, { use, useState } from "react";
-
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { Typewriter } from "react-simple-typewriter";
 import { AuthContext } from "../Context/AuthContext";
 import { Helmet } from "react-helmet";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const [isEyeOpen, setIsEyeOpen] = useState(false);
@@ -36,16 +36,28 @@ const Register = () => {
     }
 
     userRegister(email, password)
-      .then((result) => {
-        const user = result.user;
-        toast.success("Registered Successfully");
-        navigate("/");
-        setUser(user);
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error("Registration failed. Please try again.");
-      });
+  .then((result) => {
+    const user = result.user;
+
+    // Update name and photo URL to Firebase user profile
+    updateProfile (user, {
+      displayName: name,
+      photoURL: photo,
+    })
+    .then(() => {
+      toast.success("Registered Successfully");
+      setUser({ ...user, displayName: name, photoURL: photo }); 
+      navigate("/");
+    })
+    .catch((err) => {
+      console.error("Profile update error:", err);
+      toast.error("Profile update failed");
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+    toast.error("Registration failed. Please try again.");
+  });
   };
 
   const handleGLogin = () => {
