@@ -3,8 +3,8 @@
 Welcome to **HobbyHub**, a platform to **discover, join, and create local hobby groups** like book clubs, painting circles, or hiking teams. Whether you're into reading, running, or creating—HobbyHub connects you to people with similar interests in your area.
 
 🔗 **Live Website:** [https://b11-a10-papiya.netlify.app/](https://b11-a10-papiya.netlify.app/)  
-📁 **Client Repository:** [GitHub - HobbyHub Client](https://github.com/Programming-Hero-Web-Course4/b11a10-client-side-azijulhakimbd)  
-📁 **Server Repository:** [GitHub - HobbyHub Server](https://github.com/Programming-Hero-Web-Course4/b11a10-server-side-azijulhakimbd)
+📁 **Client Repository:** [GitHub - HobbyHub Client](https://github.com/azijulhakimbd/HobbyHub-Client)  
+📁 **Server Repository:** [GitHub - HobbyHub Server](https://github.com/azijulhakimbd/HobbyHub-Server)
 
 ---
 
