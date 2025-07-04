@@ -1,10 +1,19 @@
 import React from "react";
 import { Fade } from "react-awesome-reveal";
+import { Helmet } from "react-helmet";
 import { Typewriter } from "react-simple-typewriter";
 
 const Contact = () => {
   return (
     <section className="bg-base-300 text-base-content rounded-2xl my-10 transition-all duration-300">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Contact || HobbyHub</title>
+        <link
+          rel="canonical"
+          href="https://b11-a10-papiya.netlify.app/contact"
+        />
+      </Helmet>
       <div className="container mx-auto px-4 py-12">
         {/* Heading */}
         <div className="text-center">

@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom"; // ✅ Correct import
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
 import UserProfile from "./UserProfile";
@@ -7,9 +7,27 @@ import { RiLogoutCircleRLine } from "react-icons/ri";
 import { IoMdLogIn } from "react-icons/io";
 import ThemeToggle from "../Pages/ThemeToggle";
 
+// New React Icons for NavLinks
+import {
+  FaHome,
+  FaUsers,
+  FaPlus,
+  FaUserFriends,
+  FaInfoCircle,
+  FaPhoneAlt,
+  FaHandsHelping,
+} from "react-icons/fa";
+
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
-
+  const [isScrolled, setIsScrolled] = useState(false);
+ useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   const handleLogout = () => {
     userLogout();
     toast.success("Logout Successfully");
@@ -18,37 +36,55 @@ const Navbar = () => {
   const navItems = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/" className="flex items-center gap-2">
+          <FaHome /> Home
+        </NavLink>
       </li>
 
       {user && (
         <>
           <li>
-            <NavLink to="/all-groups">All Groups</NavLink>
+            <NavLink to="/all-groups" className="flex items-center gap-2">
+              <FaUsers /> All Groups
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/create-group">Create Group</NavLink>
+            <NavLink to="/create-group" className="flex items-center gap-2">
+              <FaPlus /> Create Group
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/my-groups">My Groups</NavLink>
+            <NavLink to="/my-groups" className="flex items-center gap-2">
+              <FaUserFriends /> My Groups
+            </NavLink>
           </li>
         </>
       )}
 
       <li>
-        <NavLink to="/about">About Us</NavLink>
+        <NavLink to="/about" className="flex items-center gap-2">
+          <FaInfoCircle /> About Us
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink to="/contact" className="flex items-center gap-2">
+          <FaPhoneAlt /> Contact
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/support">Support</NavLink>
+        <NavLink to="/support" className="flex items-center gap-2">
+          <FaHandsHelping /> Support
+        </NavLink>
       </li>
     </>
   );
 
   return (
-    <div className="navbar sticky top-0 z-50 bg-base-100 bg-opacity-60 backdrop-blur-md shadow-md transition duration-300">
+      <div
+      className={`navbar shadow fixed z-50 top-0 w-full px-5 lg:px-10 poppins-bold transition-all duration-300 ${
+        isScrolled ? "bg-base-100/5 backdrop-blur-md shadow-sm" : "bg-base-100"
+      }`}
+    >
       {/* Left: Logo + Mobile Dropdown */}
       <div className="navbar-start">
         <div className="dropdown">
@@ -60,7 +96,12 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
             </svg>
           </div>
           <ul
@@ -70,8 +111,15 @@ const Navbar = () => {
             {navItems}
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-xl text-primary font-extrabold">
-          Hobby<span className="text-secondary font-medium">Hub</span>
+        <Link
+          to={"/"}
+          className="btn btn-ghost normal-case text-xl text-primary font-extrabold"
+        >
+          <img
+            className="h-18"
+            src="https://i.postimg.cc/Tw0W1t20/Hobby-Hub1.png"
+            alt="HobbyHub Logo"
+          />
         </Link>
       </div>
 

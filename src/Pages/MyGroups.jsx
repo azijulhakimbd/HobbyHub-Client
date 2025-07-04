@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Context/AuthContext";
 import { Helmet } from "react-helmet";
@@ -13,7 +13,9 @@ const MyGroups = () => {
       fetch("https://b11-a10-papaya-server.vercel.app/groups")
         .then((res) => res.json())
         .then((data) => {
-          const myGroups = data.filter((group) => group.userEmail === user.email);
+          const myGroups = data.filter(
+            (group) => group.userEmail === user.email
+          );
           setGroups(myGroups);
         });
     }
@@ -45,15 +47,20 @@ const MyGroups = () => {
   };
 
   return (
-    <div className="min-h-screen p-6 bg-base-200 text-base-content transition-colors duration-300">
+    <div className="min-h-screen py-20 p-6 bg-base-200 text-base-content transition-colors duration-300">
       <Helmet>
         <meta charSet="utf-8" />
         <title>My Groups</title>
-        <link rel="canonical" href="https://b11-a10-papiya.netlify.app/mygroups" />
+        <link
+          rel="canonical"
+          href="https://b11-a10-papiya.netlify.app/mygroups"
+        />
       </Helmet>
 
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold mb-6 text-center text-primary">My Created Groups</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center text-primary">
+          My Created Groups
+        </h2>
 
         <div className="overflow-x-auto rounded-xl shadow">
           <table className="table table-zebra w-full">
@@ -83,7 +90,9 @@ const MyGroups = () => {
                     <td>{new Date(group.createdAt).toLocaleDateString()}</td>
                     <td className="flex gap-2 justify-center">
                       <Link to={`/updateGroup/${group._id}`}>
-                        <button className="btn btn-sm btn-info text-white">Update</button>
+                        <button className="btn btn-sm btn-info text-white">
+                          Update
+                        </button>
                       </Link>
                       <button
                         onClick={() => handleDelete(group._id)}
