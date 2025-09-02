@@ -14,6 +14,8 @@ import UpdateGroup from "../Pages/UpdateGroup";
 import About from "../Pages/About";
 import Contact from "../Components/Contact";
 import Support from "../Pages/Support";
+import DashboardLayout from "../Pages/Dashboard/DashboardLayout";
+import HomeDashboard from "../Pages/Dashboard/DashboardHome";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -91,6 +93,18 @@ export const router = createBrowserRouter([
         Component: Support
       }
     ],
+  },
+  {
+    path:'dashboard',
+    element: <PrivateRoutes>
+      <DashboardLayout></DashboardLayout>
+    </PrivateRoutes>,
+    children:[
+      {
+        index:true,
+        Component:HomeDashboard
+      }
+    ]
   },
   {
     path: "/*",

@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
-import UserProfile from "./UserProfile";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { IoMdLogIn } from "react-icons/io";
 import ThemeToggle from "../Pages/ThemeToggle";
@@ -21,13 +20,15 @@ import {
 const Navbar = () => {
   const { user, userLogout } = useContext(AuthContext);
   const [isScrolled, setIsScrolled] = useState(false);
- useEffect(() => {
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   const handleLogout = () => {
     userLogout();
     toast.success("Logout Successfully");
@@ -43,21 +44,8 @@ const Navbar = () => {
 
       {user && (
         <>
-          <li>
-            <NavLink to="/all-groups" className="flex items-center gap-2">
-              <FaUsers /> All Groups
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/create-group" className="flex items-center gap-2">
-              <FaPlus /> Create Group
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/my-groups" className="flex items-center gap-2">
-              <FaUserFriends /> My Groups
-            </NavLink>
-          </li>
+        
+        
         </>
       )}
 
@@ -80,7 +68,7 @@ const Navbar = () => {
   );
 
   return (
-      <div
+    <div
       className={`navbar shadow fixed z-50 top-0 w-full px-5 lg:px-10 poppins-bold transition-all duration-300 ${
         isScrolled ? "bg-base-100/5 backdrop-blur-md shadow-sm" : "bg-base-100"
       }`}
@@ -133,13 +121,43 @@ const Navbar = () => {
         <ThemeToggle />
         {user ? (
           <>
-            <UserProfile />
-            <button
-              onClick={handleLogout}
-              className="btn bg-red-500 text-white flex items-center gap-1"
-            >
-              <RiLogoutCircleRLine size={20} /> Logout
-            </button>
+            {/* Avatar Dropdown */}
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img
+                    alt="User Avatar"
+                    src={
+                      user.photoURL ||
+                      "https://i.ibb.co/2kR9yQp/default-avatar.png"
+                    }
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <Link to="/dashboard">Dashboard</Link>
+                </li>
+                <li>
+                  <Link to="/profile">Profile</Link>
+                </li>
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="text-red-500 flex items-center gap-1"
+                  >
+                    <RiLogoutCircleRLine size={18} /> Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
           </>
         ) : (
           <>
