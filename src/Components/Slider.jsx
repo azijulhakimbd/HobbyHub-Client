@@ -44,8 +44,9 @@ const Slider = () => {
   };
 
   return (
-    <div
-      className="relative w-full h-52 md:h-96 lg:h-[600px] overflow-hidden rounded-lg shadow-lg"
+  <div className="mt-15">
+      <div
+      className="relative w-full h-52 md:h-96 lg:h-[600px] overflow-hidden rounded-lg  shadow-lg"
       style={{
         background:
           "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", // gradient background
@@ -87,6 +88,7 @@ const Slider = () => {
         ❯
       </button>
     </div>
+  </div>
   );
 };
 
