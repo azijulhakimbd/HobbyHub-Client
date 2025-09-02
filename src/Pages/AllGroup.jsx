@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import GroupCard from "../Components/GroupCard";
 import { Typewriter } from "react-simple-typewriter";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const AllGroup = () => {
   const groups = useLoaderData();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (groups) {
+      const timer = setTimeout(() => setLoading(false), 800); 
+      return () => clearTimeout(timer);
+    }
+  }, [groups]);
 
   return (
     <div className="px-4 md:px-10 lg:px-20 py-10 min-h-screen bg-base-100">
-      {/* Heading with DaisyUI Typography */}
+      {/* Heading */}
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-10 text-primary">
         <Typewriter
           cursor
@@ -21,8 +31,17 @@ const AllGroup = () => {
         />
       </h1>
 
-      {/* Group Grid Responsive using DaisyUI Cards */}
-      {groups?.length > 0 ? (
+      {/* Skeleton Loader */}
+      {loading ? (
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="p-4 border rounded-lg shadow bg-white">
+              <Skeleton height={150} />
+              <Skeleton count={2} className="mt-3" />
+            </div>
+          ))}
+        </div>
+      ) : groups?.length > 0 ? (
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
           {groups.map((group) => (
             <GroupCard key={group._id} group={group} />
