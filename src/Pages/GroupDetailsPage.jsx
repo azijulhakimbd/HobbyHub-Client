@@ -24,7 +24,7 @@ const GroupDetailsPage = () => {
   const isDeadlineOver = new Date() > new Date(startDate);
 
   return (
-    <div className="min-h-screen bg-base-100 py-10 px-4 sm:px-6 lg:px-20">
+    <div className="min-h-screen bg-base-100 py-25 px-4 sm:px-6 lg:px-20">
       <h1 className="text-3xl sm:text-4xl text-center font-bold text-primary mb-10">
         Group Details
       </h1>

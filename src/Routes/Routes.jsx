@@ -36,23 +36,6 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/create-group",
-        element: (
-          <PrivateRoutes>
-            <CreateGroup></CreateGroup>
-          </PrivateRoutes>
-        ),
-      },
-      {
-        path: "/my-groups",
-        loader: () => fetch("https://b11-a10-papaya-server.vercel.app/groups/"),
-        element: (
-          <PrivateRoutes>
-            <MyGroups></MyGroups>
-          </PrivateRoutes>
-        ),
-      },
-      {
         path: "/group/:id",
         loader: ({ params }) =>
           fetch(`https://b11-a10-papaya-server.vercel.app/groups/${params.id}`),
@@ -103,7 +86,24 @@ export const router = createBrowserRouter([
       {
         index:true,
         Component:HomeDashboard
-      }
+      },
+        {
+        path: "create-group",
+        element: (
+          <PrivateRoutes>
+            <CreateGroup></CreateGroup>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "my-groups",
+        loader: () => fetch("https://b11-a10-papaya-server.vercel.app/groups/"),
+        element: (
+          <PrivateRoutes>
+            <MyGroups></MyGroups>
+          </PrivateRoutes>
+        ),
+      },
     ]
   },
   {
